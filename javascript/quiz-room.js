@@ -4,7 +4,7 @@ var loc = window.location.search.split("&");
 var mode = loc[0].split("=").reverse()[0]; // * pvp or sp
 var isInvited = null;
 
-if(loc[2].split("=")[0] == "invited"){
+if(loc[2] != undefined && loc[2].split("=")[0] == "invited"){
     isInvited = loc[2].split("=").reverse()[0]; // * invited
 }else{
     isInvited = false;
