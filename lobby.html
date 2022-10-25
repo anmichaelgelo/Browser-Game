@@ -15,37 +15,15 @@
 </head>
 <body>
     <div id="app">
-        <form class="login-form" 
-            id="login" 
-            method="GET" 
-            action="choose-mode.html">
+        
+        <div class="group flex-center flex-column">
+            <h3>Waiting...</h3>
 
-            <div class="logo-brand">
-                <img src="images/logo-chat.png" 
-                    alt="Logo" 
-                    width="200">
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <em data-feather="user"></em>
-                    <input type="text" 
-                        name="username" 
-                        id="username"
-                        class="form-control" 
-                        placeholder="Username..." 
-                        autocomplete="off">  
-                </div>
-                <div class="invalid-feedback w-100" id="invalid-username">
-                    <span></span>
-                </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit" 
-                    class="btn btn-accent" 
-                    id="btn-play">Play!</button>
-            </div>
-        </form>
+            <img src="images/AvatarMaker.svg" 
+                alt="Avatar" 
+                width="300"
+                class="rounded-circle">
+        </div>
 
         <div id="elements"></div>
     </div>
@@ -63,7 +41,23 @@
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="javascript/index.js"></script>  
-    <script src="javascript/script.js"></script>  
+    <script src="javascript/script.js"></script>
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('2d6fac42923bea7bc164', {
+        cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('quiztions');
+        channel.bind('join-user', function(data) {
+            if(data.start === true){
+                window.location.href = data.invited;
+            }
+        });
+    </script>
 </body>
 </html>

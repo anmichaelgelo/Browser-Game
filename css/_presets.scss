@@ -46,6 +46,10 @@
     width: 100%;
 }
 
+.text-right{
+    text-align: right;
+}
+
 .text-light{
     color: $light;
 }
@@ -67,12 +71,32 @@
     @include flexbox(center, center);
 }
 
+.flex-column{
+    flex-direction: column;
+}
+
+.rounded-circle{
+    border-radius: 50%;
+}
+
 .margin-l-2{
     margin-left: 8px;
 }
 
 .margin-r-2{
     margin-right: 8px;
+}
+
+.margin-b-0{
+    margin-bottom: 0;
+}
+
+.margin-b-lg{
+    margin-bottom: 40px;
+}
+
+.margin-t-2{
+    margin-top: 8px;
 }
 
 // * Card Group
@@ -95,6 +119,7 @@
     transition: all .2s ease;
     border: none;
     outline: none;
+    text-decoration: none;
 
     .card-img{
         img{
@@ -137,4 +162,14 @@ button.card{
 .text-muted{
     color: $disabled;
     font-weight: 600;
+}
+
+.invalid-feedback{
+    span{
+        color: $error;
+    }
+}
+
+.hidden{
+    visibility: hidden;
 }

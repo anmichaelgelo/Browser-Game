@@ -9,14 +9,17 @@
         .nav{
             list-style: none;
             @include flexbox(center, flex-start);
-            gap: 40px;
+            // gap: 40px;
             padding-left: 0;
             border-bottom: 1px solid $disabled;
 
             .nav-item{
+                text-align: center;
                 padding-bottom: 20px;
 
                 .nav-link{
+                    padding-left: 24px;
+                    padding-right: 24px;
                     text-decoration: none;
                     color: $disabled;
                     padding-bottom: 17px;
@@ -71,21 +74,46 @@
     }
 }
 
+.joined-users{
+    ul{
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        gap: 40px;
+
+        li{
+            flex-direction: column;
+
+            img{
+                border-radius: 50%;
+                border: 3px solid $primary;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
 .questions{
     height: 80vh;
     @include flexbox(center, center);
     flex-direction: column;
     gap: 56px;
 
-    h1.q{
-        font-weight: 700;
-        color: $white;
+    .text-center{
+        width: 70%;
+
+        h1.q{
+            font-weight: 700;
+            color: $white;
+            line-height: 50px;
+        }
     }
 
     .choices{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         column-gap: 24px;
+        width: 100%;
 
         .answer-card{
             padding: 20px;
@@ -93,7 +121,7 @@
             color: $light;
             border: none;
             outline: none;
-            @include flexbox(flex-start, flex-start);
+            @include flexbox(center, center);
             flex-direction: column;
             cursor: pointer;
             transition: all .2s ease;
@@ -108,7 +136,7 @@
             }
 
             .answer-desc{
-                text-align: left;
+                // text-align: left;
 
                 p{
                     line-height: 24px;
@@ -127,7 +155,15 @@
                 box-shadow: $shadow__focus;
                 opacity: 1;
             }
+
+            &:disabled{
+                box-shadow: none;
+                opacity: 1;
+                position: relative;
+                bottom: 0px;
+            }
         }
+        // &[disabled]
 
         .card-a{
             background-color: $primary;
@@ -136,10 +172,18 @@
             background-color: $info;
         }
         .card-c{
-            background-color: $teal;
+            background-color: #2fa1b1;
         }
         .card-d{
             background-color: $complementary;
+        }
+
+        .card-error{
+            background-color: $error !important;
+        }
+        
+        .card-success{
+            background-color: $accent !important;
         }
     }
 }

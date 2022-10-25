@@ -399,6 +399,10 @@ body {
   width: 100%;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .text-light {
   color: #F4F5FE;
 }
@@ -428,12 +432,35 @@ body {
           justify-content: center;
 }
 
+.flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
 .margin-l-2 {
   margin-left: 8px;
 }
 
 .margin-r-2 {
   margin-right: 8px;
+}
+
+.margin-b-0 {
+  margin-bottom: 0;
+}
+
+.margin-b-lg {
+  margin-bottom: 40px;
+}
+
+.margin-t-2 {
+  margin-top: 8px;
 }
 
 .card-group {
@@ -468,6 +495,7 @@ body {
   transition: all .2s ease;
   border: none;
   outline: none;
+  text-decoration: none;
 }
 
 .card .card-img img {
@@ -525,6 +553,14 @@ button.card:active {
 .text-muted {
   color: #BEC4FC;
   font-weight: 600;
+}
+
+.invalid-feedback span {
+  color: #DB222D;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 #app {
@@ -680,6 +716,7 @@ button.card:active {
   -webkit-box-flex: .27;
       -ms-flex: .27;
           flex: .27;
+  z-index: 1;
 }
 
 .login-form .logo-brand {
@@ -993,16 +1030,18 @@ button.card:active {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  gap: 40px;
   padding-left: 0;
   border-bottom: 1px solid #BEC4FC;
 }
 
 .container .select-quiz .browse-by-subject .nav .nav-item {
+  text-align: center;
   padding-bottom: 20px;
 }
 
 .container .select-quiz .browse-by-subject .nav .nav-item .nav-link {
+  padding-left: 24px;
+  padding-right: 24px;
   text-decoration: none;
   color: #BEC4FC;
   padding-bottom: 17px;
@@ -1080,6 +1119,28 @@ button.card:active {
   border: 1px solid #3C3072;
 }
 
+.container .joined-users ul {
+  list-style: none;
+  padding-left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 40px;
+}
+
+.container .joined-users ul li {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container .joined-users ul li img {
+  border-radius: 50%;
+  border: 3px solid #a076df;
+  margin-bottom: 8px;
+}
+
 .container .questions {
   height: 80vh;
   display: -webkit-box;
@@ -1098,9 +1159,14 @@ button.card:active {
   gap: 56px;
 }
 
-.container .questions h1.q {
+.container .questions .text-center {
+  width: 70%;
+}
+
+.container .questions .text-center h1.q {
   font-weight: 700;
   color: #fff;
+  line-height: 50px;
 }
 
 .container .questions .choices {
@@ -1110,6 +1176,7 @@ button.card:active {
       grid-template-columns: repeat(4, 1fr);
   -webkit-column-gap: 24px;
           column-gap: 24px;
+  width: 100%;
 }
 
 .container .questions .choices .answer-card {
@@ -1121,12 +1188,12 @@ button.card:active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1154,10 +1221,6 @@ button.card:active {
   border: 2px solid #F4F5FE;
 }
 
-.container .questions .choices .answer-card .answer-desc {
-  text-align: left;
-}
-
 .container .questions .choices .answer-card .answer-desc p {
   line-height: 24px;
   font-size: 18px;
@@ -1177,6 +1240,14 @@ button.card:active {
   opacity: 1;
 }
 
+.container .questions .choices .answer-card:disabled {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: 1;
+  position: relative;
+  bottom: 0px;
+}
+
 .container .questions .choices .card-a {
   background-color: #a076df;
 }
@@ -1186,15 +1257,24 @@ button.card:active {
 }
 
 .container .questions .choices .card-c {
-  background-color: #3AA786;
+  background-color: #2fa1b1;
 }
 
 .container .questions .choices .card-d {
   background-color: #D6B541;
 }
 
+.container .questions .choices .card-error {
+  background-color: #DB222D !important;
+}
+
+.container .questions .choices .card-success {
+  background-color: #34D49D !important;
+}
+
 .modal,
-.screen-loader {
+.screen-loader,
+.scoreboard {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
@@ -1212,7 +1292,8 @@ button.card:active {
 }
 
 .modal .modal-wrapper,
-.screen-loader .modal-wrapper {
+.screen-loader .modal-wrapper,
+.scoreboard .modal-wrapper {
   background-color: #3C3072;
   padding: 32px;
   -webkit-box-shadow: 8px 10px 2px rgba(0, 0, 0, 0.25);
@@ -1236,7 +1317,8 @@ button.card:active {
 }
 
 .modal .modal-wrapper .btn-close,
-.screen-loader .modal-wrapper .btn-close {
+.screen-loader .modal-wrapper .btn-close,
+.scoreboard .modal-wrapper .btn-close {
   background-color: transparent;
   color: #BEC4FC;
   -webkit-box-shadow: none;
@@ -1248,24 +1330,28 @@ button.card:active {
 }
 
 .modal .modal-wrapper .btn-close .feather,
-.screen-loader .modal-wrapper .btn-close .feather {
+.screen-loader .modal-wrapper .btn-close .feather,
+.scoreboard .modal-wrapper .btn-close .feather {
   width: 18px;
   height: 18px;
 }
 
 .modal .modal-wrapper .btn-close:active,
-.screen-loader .modal-wrapper .btn-close:active {
+.screen-loader .modal-wrapper .btn-close:active,
+.scoreboard .modal-wrapper .btn-close:active {
   color: #19123E;
 }
 
 .modal .modal-wrapper h2,
-.screen-loader .modal-wrapper h2 {
+.screen-loader .modal-wrapper h2,
+.scoreboard .modal-wrapper h2 {
   margin: 0;
   margin-bottom: 16px;
 }
 
 .modal .modal-wrapper .join-wrapper,
-.screen-loader .modal-wrapper .join-wrapper {
+.screen-loader .modal-wrapper .join-wrapper,
+.scoreboard .modal-wrapper .join-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1279,7 +1365,8 @@ button.card:active {
 }
 
 .modal .modal-wrapper .invalid-feedback,
-.screen-loader .modal-wrapper .invalid-feedback {
+.screen-loader .modal-wrapper .invalid-feedback,
+.scoreboard .modal-wrapper .invalid-feedback {
   display: none;
   background-color: #DB222D;
   color: #F4F5FE;
@@ -1294,6 +1381,8 @@ button.card:active {
 }
 
 .screen-loader .loader-content {
+  width: 100%;
+  height: 100vh;
   position: relative;
 }
 
@@ -1308,6 +1397,46 @@ button.card:active {
           animation-direction: alternate;
   -webkit-animation-play-state: running;
           animation-play-state: running;
+}
+
+.scoreboard-content {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.scoreboard-content .board {
+  background-color: #3C3072;
+  width: 35%;
+  padding: 32px;
+  -webkit-box-shadow: 8px 10px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.scoreboard-content .board .flex-center {
+  gap: 16px;
 }
 
 @-webkit-keyframes bounce {
